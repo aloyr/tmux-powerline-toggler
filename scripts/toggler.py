@@ -76,8 +76,8 @@ def main()-> None:
     make_menu(data)
     time.sleep(0.5)
     (selection, err) = Popen(['pbpaste'], stdout=PIPE).communicate()
-    Popen(['tmux','display-message','toggle segment: "' + selection.decode().strip() + '"'], stdout=PIPE).communicate()
     if selection.decode().strip() != 'none':
+        Popen(['tmux','display-message','toggle segment: "' + selection.decode().strip() + '"'], stdout=PIPE).communicate()
         toggle_item(selection.decode().strip())
         main()
 
