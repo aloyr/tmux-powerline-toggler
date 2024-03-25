@@ -26,7 +26,7 @@ def get_segments()-> list:
                 ok_to_read = False
                 continue
             if ok_to_read:
-                segments.append(line.strip().split()[0].replace('"','').replace('#','.'))
+                segments.append(line.strip().split()[0].replace('"','').replace('#','.').replace('..','.'))
     return segments
 
 def make_menu(items: list)-> None:
