@@ -5,9 +5,9 @@ from subprocess import Popen, PIPE
 
 def get_theme_file():
     script = '/'.join(os.path.realpath(sys.argv[0]).split('/')[:-1]) + '/find_theme.sh'
-    with Popen(script, stdout=PIPE) as p:
+    with Popen([script], stdout=PIPE) as p:
         (data, _) = p.communicate()
-    return data.strip()
+    return data.decode().strip()
 
 def get_segments()-> list:
     data = get_theme_file()
