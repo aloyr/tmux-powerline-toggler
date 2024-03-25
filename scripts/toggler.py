@@ -19,11 +19,16 @@ def get_segments()-> list:
             found_left = line.strip().find('TMUX_POWERLINE_LEFT_STATUS_SEGMENTS') == 0
             found_right = line.strip().find('TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS') == 0
             found_end = line.strip().find(')') == 0
+            if found_left:
+                segments.append('-<<<<<<<<<<<<')
+            if found_right:
+                segments.append('->>>>>>>>>>>>')
             if not ok_to_read and (found_left or found_right):
                 ok_to_read = True
                 continue
             if ok_to_read and found_end:
                 ok_to_read = False
+                segments.append('-============')
                 continue
             if ok_to_read:
                 segments.append(line.strip().split()[0].replace('"','').replace('#','.').replace('..','.'))
